@@ -73,6 +73,7 @@ resource "aws_instance" "webserver" {
 terraform init
 terraform plan
 terraform apply
+terraform destroy
 ```
 6)
 >> Crosscheck AWS Account 
