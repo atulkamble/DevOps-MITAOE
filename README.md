@@ -1,4 +1,3 @@
-```markdown
 # DevOps-MITAOE
 
 ## Pre-requisites:
@@ -53,4 +52,3 @@ Upon completion of the course, students will be able to:
 1. Kavis, Michael J. *Architecting the Cloud: Design Decisions for Cloud Computing Service Models (SaaS, PaaS, and IaaS)*. John Wiley & Sons, 2014.
 2. Vacca, John R., ed. *Cloud Computing Security: Foundations and Challenges*. CRC Press, 2016.
 3. Furht, Borivoje, and Armando Escalante. *Handbook of Cloud Computing*. Vol. 3. Springer, 2010.
-```
