@@ -26,8 +26,9 @@ sudo yum install awscli -y
 aws --version
 aws configure
 ```
->> enter access key, secret access key, region-name, output
-us-east-1, json
+>> enter access key, secret access key,
+>> region-name example:us-east-1
+>> output example:json
 
 4) install terraform
 ```
