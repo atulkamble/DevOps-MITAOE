@@ -1,5 +1,21 @@
 Step-by-step guide to creating a sample application that demonstrates the use of **CodeCommit**, **CodeBuild**, and **CodeDeploy**. The application will be a simple web server (Node.js) that gets deployed on an EC2 instance using AWS services.
 
+Here’s the detailed information for creating the repository:
+
+### **Repository Name**: `SampleWebApp`
+
+### **Description**: 
+A simple Node.js web server application demonstrating the use of AWS CodeCommit, CodeBuild, and CodeDeploy for continuous integration and continuous deployment (CI/CD) on an EC2 instance.
+
+### **Tags**:
+- Node.js
+- AWS CodeCommit
+- AWS CodeBuild
+- AWS CodeDeploy
+- CI/CD Pipeline
+- EC2 Deployment
+- DevOps
+
 ### Prerequisites:
 1. **AWS CLI** installed and configured.
 2. **IAM Role** with necessary permissions (CodeCommit, CodeBuild, CodeDeploy, EC2 access).
