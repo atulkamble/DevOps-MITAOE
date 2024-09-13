@@ -1,186 +1,150 @@
-Step-by-step guide to creating a sample application that demonstrates the use of **CodeCommit**, **CodeBuild**, and **CodeDeploy**. The application will be a simple web server (Node.js) that gets deployed on an EC2 instance using AWS services.
+Here’s a guide for demonstrating the use of GitHub, AWS CodeBuild, and AWS CodeDeploy on an EC2 instance with a sample application. We’ll create a simple Node.js web application, store it in a GitHub repository, and automate its deployment to an EC2 instance using CodeBuild and CodeDeploy.
 
-Here’s the detailed information for creating the repository:
-
-### **Repository Name**: `SampleWebApp`
-
-### **Description**: 
-A simple Node.js web server application demonstrating the use of AWS CodeCommit, CodeBuild, and CodeDeploy for continuous integration and continuous deployment (CI/CD) on an EC2 instance.
-
-### **Tags**:
-- Node.js
-- AWS CodeCommit
-- AWS CodeBuild
-- AWS CodeDeploy
-- CI/CD Pipeline
-- EC2 Deployment
-- DevOps
-
-### Prerequisites:
-1. **AWS CLI** installed and configured.
-2. **IAM Role** with necessary permissions (CodeCommit, CodeBuild, CodeDeploy, EC2 access).
-3. **EC2 Instance** running Amazon Linux 2 or another supported platform.
-4. **AWS CodeDeploy agent** installed on the EC2 instance.
-
----
-
-### Step 1: Create a CodeCommit Repository
-
-1. **Create Repository in CodeCommit:**
-   - Open the AWS Management Console and go to **CodeCommit**.
-   - Create a new repository named `SampleWebApp`.
-   
-2. **Clone the Repository Locally:**
+### Step 1: Create a GitHub Repository
+1. **Create a new repository** on GitHub and initialize it with a `README.md` file.
+2. **Clone the repository** to your local machine:
    ```bash
-   git clone https://git-codecommit.<region>.amazonaws.com/v1/repos/SampleWebApp
-   cd SampleWebApp
+   git clone https://github.com/your-username/your-repository.git
+   cd your-repository
    ```
 
-### Step 2: Create a Simple Node.js Application
-
-1. **Initialize a Node.js project:**
+### Step 2: Create a Sample Node.js Application
+1. Initialize a new Node.js project:
    ```bash
    npm init -y
    ```
-
-2. **Install Express.js:**
+2. Install the `express` module:
    ```bash
    npm install express
    ```
-
-3. **Create `app.js` file:**
+3. Create a simple `app.js` file:
    ```javascript
    const express = require('express');
    const app = express();
+   const port = 3000;
 
    app.get('/', (req, res) => {
-       res.send('Hello from CodeDeploy!');
+     res.send('Hello, World!');
    });
 
-   const port = process.env.PORT || 3000;
    app.listen(port, () => {
-       console.log(`App is running on port ${port}`);
+     console.log(`App is running on http://localhost:${port}`);
    });
    ```
 
-4. **Create a `package.json` script to run the application:**
-   Add this to your `package.json`:
-   ```json
-   "scripts": {
-       "start": "node app.js"
-   }
+4. Add a `Procfile` (for deployment):
+   ```
+   web: node app.js
    ```
 
-### Step 3: Create a BuildSpec File for CodeBuild
-
-1. **Create `buildspec.yml`** in the root of your repository:
-   ```yaml
-   version: 0.2
-
-   phases:
-     install:
-       commands:
-         - echo Installing dependencies...
-         - npm install
-     build:
-       commands:
-         - echo Build started on `date`
-         - npm run start
-   ```
-
-### Step 4: Create an AppSpec File for CodeDeploy
-
-1. **Create a `appspec.yml`** in the root of your repository:
-   ```yaml
-   version: 0.0
-   os: linux
-   files:
-     - source: /
-       destination: /home/ec2-user/sample-web-app
-
-   hooks:
-     AfterInstall:
-       - location: scripts/install_dependencies.sh
-         timeout: 300
-         runas: ec2-user
-     ApplicationStart:
-       - location: scripts/start_server.sh
-         timeout: 300
-         runas: ec2-user
-   ```
-
-### Step 5: Create Shell Scripts for Deployment
-
-1. **Create a directory `scripts/`** and add the following files:
-
-   **`install_dependencies.sh`**
-   ```bash
-   #!/bin/bash
-   cd /home/ec2-user/sample-web-app
-   npm install
-   ```
-
-   **`start_server.sh`**
-   ```bash
-   #!/bin/bash
-   cd /home/ec2-user/sample-web-app
-   npm start &
-   ```
-
-2. **Make the scripts executable:**
-   ```bash
-   chmod +x scripts/*.sh
-   ```
-
-### Step 6: Push the Code to CodeCommit
-
-1. **Add, commit, and push the code to CodeCommit:**
+5. Commit your changes and push them to GitHub:
    ```bash
    git add .
    git commit -m "Initial commit"
    git push origin main
    ```
 
-### Step 7: Set Up AWS CodeBuild
-
-1. **Create a CodeBuild Project:**
-   - Go to **AWS CodeBuild** in the console.
-   - Create a new build project, selecting the **CodeCommit** repository and configuring the build environment for **Node.js**.
-
-2. **Choose BuildSpec:**
-   - Choose the `buildspec.yml` file for the build commands.
-
-### Step 8: Set Up AWS CodeDeploy
-
-1. **Create an Application in CodeDeploy:**
-   - Go to **AWS CodeDeploy** and create a new application.
-   - Create a **deployment group** for your EC2 instances with the appropriate IAM role.
-
-2. **Configure EC2 Instances:**
-   Ensure the **CodeDeploy agent** is installed on your EC2 instance:
+### Step 3: Set Up an EC2 Instance
+1. **Launch an EC2 instance** (Amazon Linux 2).
+2. Connect to your instance via SSH and install the required dependencies:
    ```bash
    sudo yum update -y
-   sudo yum install -y ruby
-   cd /home/ec2-user/
-   wget https://bucket-name.s3.region.amazonaws.com/latest/install
-   chmod +x ./install
+   sudo yum install -y git nodejs
+   ```
+
+3. Install the CodeDeploy Agent on EC2:
+   ```bash
+   sudo yum install ruby
+   sudo wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
+   sudo chmod +x ./install
    sudo ./install auto
    sudo service codedeploy-agent start
    ```
 
-### Step 9: Set Up a Deployment Pipeline
+### Step 4: Set Up AWS CodeDeploy
+1. In the **AWS Management Console**, go to **CodeDeploy** and create a new **application** and **deployment group**.
+   - Application type: EC2/On-premises.
+   - Deployment group: Create a new one with EC2 as the compute platform and select the EC2 instance.
 
-1. **Create a Pipeline:**
-   - Go to **AWS CodePipeline** and create a new pipeline.
-   - Set **CodeCommit** as the source.
-   - Set **CodeBuild** as the build stage.
-   - Set **CodeDeploy** as the deploy stage.
+2. **Install the CodeDeploy agent** on your EC2 instance if you haven’t done so already.
 
-2. **Deploy the Application:**
-   - Push new changes to trigger the pipeline.
+### Step 5: Create `appspec.yml` for CodeDeploy
+In the root of your GitHub repo, add an `appspec.yml` file to define how CodeDeploy will handle the deployment:
+```yaml
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/node-app
 
----
+hooks:
+  AfterInstall:
+    - location: scripts/install_dependencies.sh
+      timeout: 300
+      runas: ec2-user
+  ApplicationStart:
+    - location: scripts/start_server.sh
+      timeout: 300
+      runas: ec2-user
+```
 
-### Testing and Conclusion
+### Step 6: Add Deployment Scripts
+In your GitHub repo, create a `scripts` folder with the following two files:
 
-After pushing your code and triggering the pipeline, CodeCommit will store the code, CodeBuild will build the application, and CodeDeploy will deploy it to your EC2 instance. You can visit your EC2 instance's public IP to see the running application.
+- **`install_dependencies.sh`**:
+  ```bash
+  #!/bin/bash
+  cd /home/ec2-user/node-app
+  npm install
+  ```
+
+- **`start_server.sh`**:
+  ```bash
+  #!/bin/bash
+  cd /home/ec2-user/node-app
+  node app.js > app.log 2>&1 &
+  ```
+
+Commit and push these changes to GitHub:
+```bash
+git add .
+git commit -m "Added appspec.yml and deployment scripts"
+git push origin main
+```
+
+### Step 7: Set Up AWS CodeBuild
+1. In the **AWS Management Console**, go to **CodeBuild** and create a new build project.
+2. **Source**: Connect it to your GitHub repository.
+3. **Buildspec**: Either create a `buildspec.yml` file in your repo or define the build commands directly in CodeBuild.
+   ```yaml
+   version: 0.2
+
+   phases:
+     install:
+       commands:
+         - echo Installing Node.js
+         - npm install
+
+     build:
+       commands:
+         - echo Build started on `date`
+         - npm test
+   ```
+
+### Step 8: Automate the Deployment
+1. Set up **CodePipeline** to automate the deployment from GitHub to EC2 using CodeBuild and CodeDeploy.
+2. Create a pipeline:
+   - Source: GitHub repository.
+   - Build: CodeBuild.
+   - Deploy: CodeDeploy.
+
+### Step 9: Test the Deployment
+1. Push a change to your GitHub repository (e.g., modify the `app.js` file).
+2. This should trigger CodePipeline to build your application using CodeBuild and deploy it to your EC2 instance via CodeDeploy.
+
+3. Verify the deployment by visiting your EC2 instance's public IP on port 3000:
+   ```
+   http://your-ec2-public-ip:3000
+   ```
+
+This setup demonstrates the integration of GitHub, CodeBuild, and CodeDeploy for automatic deployment on an EC2 instance.
