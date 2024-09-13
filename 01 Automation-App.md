@@ -4,8 +4,8 @@ Guide for demonstrating the use of GitHub, AWS CodeBuild, and AWS CodeDeploy on 
 1. **Create a new repository** on GitHub and initialize it with a `README.md` file.
 2. **Clone the repository** to your local machine:
    ```bash
-   git clone https://github.com/your-username/your-repository.git
-   cd your-repository
+   git clone https://github.com/atulkamble/webapp
+   cd webapp
    ```
 
 ### Step 2: Create a Sample Node.js Application
@@ -45,28 +45,41 @@ Guide for demonstrating the use of GitHub, AWS CodeBuild, and AWS CodeDeploy on 
    ```
 
 ### Step 3: Set Up an EC2 Instance
-1. **Launch an EC2 instance** (Amazon Linux 2).
+1. **Launch an EC2 instance** (Amazon Linux 2). webapp | webapp.key | t2.micro | ssh
 2. Connect to your instance via SSH and install the required dependencies:
    ```bash
    sudo yum update -y
-   sudo yum install -y git nodejs
+   sudo yum install git -y
+   git config --global user.name "Atul Kamble"
+   git config --global user.email "atul_kamble@hotmail.com"
+   sudo yum install nodejs -y
    ```
 
 3. Install the CodeDeploy Agent on EC2:
    ```bash
-   sudo yum install ruby
-   sudo wget https://aws-codedeploy-us-east-1.s3.amazonaws.com/latest/install
+   sudo yum update -y
+   sudo yum install ruby -y
+   sudo yum install wget -y
+   cd /home/ec2-user
+   sudo wget https://aws-codedeploy-us-east-2.s3.us-east-2.amazonaws.com/latest/install
    sudo chmod +x ./install
    sudo ./install auto
    sudo service codedeploy-agent start
+   sudo service codedeploy-agent status
    ```
 
 ### Step 4: Set Up AWS CodeDeploy
 1. In the **AWS Management Console**, go to **CodeDeploy** and create a new **application** and **deployment group**.
-   - Application type: EC2/On-premises.
-   - Deployment group: Create a new one with EC2 as the compute platform and select the EC2 instance.
+   Developer Tools>>CodeDeploy>>Applications>>Create application
+   Name it | webapp | Application type: EC2/On-premises.
 
-2. **Install the CodeDeploy agent** on your EC2 instance if you haven’t done so already.
+2. Deployment group: Create a new one with EC2 as the compute platform and select the EC2 instance.
+   Developer Tools>>CodeDeploy>>Applications>>webapp>>Create deployment group
+   Name it | webapp-group | Select Configurations
+   
+4. IAM >> Create Role >> Name it | CodeDeployServiceRole
+   
+5. **Install the CodeDeploy agent** on your EC2 instance if you haven’t done so already.
 
 ### Step 5: Create `appspec.yml` for CodeDeploy
 In the root of your GitHub repo, add an `appspec.yml` file to define how CodeDeploy will handle the deployment:
