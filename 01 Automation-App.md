@@ -1,4 +1,4 @@
-Here’s a guide for demonstrating the use of GitHub, AWS CodeBuild, and AWS CodeDeploy on an EC2 instance with a sample application. We’ll create a simple Node.js web application, store it in a GitHub repository, and automate its deployment to an EC2 instance using CodeBuild and CodeDeploy.
+Guide for demonstrating the use of GitHub, AWS CodeBuild, and AWS CodeDeploy on an EC2 instance with a sample application. We’ll create a simple Node.js web application, store it in a GitHub repository, and automate its deployment to an EC2 instance using CodeBuild and CodeDeploy.
 
 ### Step 1: Create a GitHub Repository
 1. **Create a new repository** on GitHub and initialize it with a `README.md` file.
