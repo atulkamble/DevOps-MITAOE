@@ -47,7 +47,8 @@ Guide for demonstrating the use of GitHub, AWS CodeBuild, and AWS CodeDeploy on 
 
 ### Step 3: Set Up an EC2 Instance
 1. **Launch an EC2 instance** (Amazon Linux 2). webapp | webapp.key | t2.micro | ssh
-2. Connect to your instance via SSH and install the required dependencies:
+2. Update SG: 3000 in Inbound
+3. Connect to your instance via SSH and install the required dependencies:
    ```bash
    sudo yum update -y
    sudo yum install git -y
@@ -56,7 +57,7 @@ Guide for demonstrating the use of GitHub, AWS CodeBuild, and AWS CodeDeploy on 
    sudo yum install nodejs -y
    ```
 
-3. Install the CodeDeploy Agent on EC2:
+4. Install the CodeDeploy Agent on EC2:
    ```bash
    sudo yum update -y
    sudo yum install ruby -y
@@ -128,8 +129,9 @@ git push origin main
 
 ### Step 7: Set Up AWS CodeBuild
 1. In the **AWS Management Console**, go to **CodeBuild** and create a new build project.
-2. **Source**: Connect it to your GitHub repository.
-3. **Buildspec**: Either create a `buildspec.yml` file in your repo or define the build commands directly in CodeBuild.
+2. Developer Tools>>CodeBuild>>Build projects>>Create build project
+3. **Source**: Connect it to your GitHub repository.
+4. **Buildspec**: Either create a `buildspec.yml` file in your repo or define the build commands directly in CodeBuild.
    ```yaml
    version: 0.2
 
@@ -159,6 +161,7 @@ git push origin main
 3. Verify the deployment by visiting your EC2 instance's public IP on port 3000:
    ```
    http://your-ec2-public-ip:3000
+   http://184.72.68.27:3000/
    ```
 
 This setup demonstrates the integration of GitHub, CodeBuild, and CodeDeploy for automatic deployment on an EC2 instance.
