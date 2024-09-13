@@ -22,7 +22,7 @@ Upon completion of the course, students will be able to:
 
 ## Practical Experiments:
 1. **SDLC Automation** (4 Hours)  
-   Create a sample application to demonstrate the use of CodeCommit, CodeBuild, and CodeDeploy.
+   Create a sample application to demonstrate the use of Github, CodeBuild, and CodeDeploy.
    
 2. **Advanced Configuration Management** (2 Hours)  
    Launch infrastructure using AWS CloudFormation's advanced features like `cfn-init` and `cfn-signal`.
