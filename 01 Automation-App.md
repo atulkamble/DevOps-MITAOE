@@ -38,9 +38,10 @@ Guide for demonstrating the use of GitHub, AWS CodeBuild, and AWS CodeDeploy on 
    ```
 
 5. Commit your changes and push them to GitHub:
+   Note: Configure Developer Setting | Create Token | Commit Code to repo
    ```bash
    git add .
-   git commit -m "Initial commit"
+   git commit -m "added code"
    git push origin main
    ```
 
