@@ -55,6 +55,7 @@ Guide for demonstrating the use of GitHub, AWS CodeBuild, and AWS CodeDeploy on 
    git config --global user.name "Atul Kamble"
    git config --global user.email "atul_kamble@hotmail.com"
    sudo yum install nodejs -y
+   npm install --save-dev mocha
    ```
 
 4. Install the CodeDeploy Agent on EC2:
