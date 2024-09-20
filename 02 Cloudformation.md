@@ -5,7 +5,7 @@ Here's a guide to launch infrastructure using AWS CloudFormation, utilizing adva
 The CloudFormation template below provisions an EC2 instance, installs and configures a simple web server using cfn-init, and signals CloudFormation using cfn-signal when the instance is ready.
 
 CloudFormation Template (YAML)
-
+```
 AWSTemplateFormatVersion: "2010-09-09"
 Description: CloudFormation Stack with cfn-init and cfn-signal
 
@@ -80,7 +80,7 @@ Outputs:
   WebsiteURL:
     Description: The URL of the website
     Value: !Sub "http://${MyEC2Instance.PublicIp}"
-
+```
 2. Explanation of Template
 
 Parameters:
