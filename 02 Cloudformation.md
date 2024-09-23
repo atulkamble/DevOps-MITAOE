@@ -1,8 +1,6 @@
-1. Create keypair 
-key.pem from AWS Console
+1. Create keypair key.pem from AWS Console
 
 2. Create a file on your machine or on git/github | template.yaml
-
 ```
 AWSTemplateFormatVersion: "2010-09-09"
 Description: CloudFormation Stack with cfn-init and cfn-signal
@@ -80,8 +78,8 @@ Resources:
 ```
 
 3. AWS Cloudformation
->> Choose Existing template >> upload a template file
-
-4. Add Stack name
-
-5. Check instance public-ip in browser
+4. Choose Existing template | upload a template file
+5. Add Stack name
+6. Check instance public-ip in browser
+7. Delete Stack
+8. Delete S3 Bucket
