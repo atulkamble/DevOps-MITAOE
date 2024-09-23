@@ -75,12 +75,12 @@ Resources:
           FromPort: 22
           ToPort: 22
           CidrIp: 0.0.0.0/0
-
+```
 Outputs:
   WebsiteURL:
     Description: The URL of the website
     Value: !Sub "http://${MyEC2Instance.PublicIp}"
-```
+
 2. Explanation of Template
 
 Parameters:
