@@ -1,4 +1,3 @@
-You're diving into some powerful AWS features! Here’s a brief overview of the topics you're exploring:
 
 ### Advanced CloudFormation:
 - **User Data & cfn-init**: Use EC2 instance metadata (User Data) to run scripts at instance launch. `cfn-init` helps with configuring software and services on instances.
@@ -22,5 +21,3 @@ You're diving into some powerful AWS features! Here’s a brief overview of the 
 - **Environment Variables**: Store sensitive data like API keys, and manage them securely using KMS and SSM.
 - **Versions & Aliases**: Manage Lambda function versions, and use aliases to route traffic to specific versions, including canary releases for gradual rollouts.
 - **SAM Framework**: Simplify the development and deployment of serverless applications with AWS SAM.
-
-Let me know if you'd like to dive deeper into any of these areas!
