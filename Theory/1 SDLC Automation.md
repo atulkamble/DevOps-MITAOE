@@ -1,4 +1,4 @@
-Here's a quick overview of the CICD tools you're focused on:
+CICD tools:
 
 ### **CodeCommit**:
 - **Overview**: A fully managed source control service that supports Git. It allows teams to collaborate on code in a secure and scalable way.
@@ -28,8 +28,3 @@ Here's a quick overview of the CICD tools you're focused on:
 - **Manual Approval Steps**: You can insert manual approval steps between stages for greater control.
 - **Stage Actions**: Define actions like source, build, test, deploy, and approval in each stage.
 - **All Integrations**: Supports a variety of integrations, including third-party tools like Jenkins, GitHub, and Bitbucket.
-
-### **Self-Study: Jenkins Architecture**:
-- **Jenkins**: It uses a master-agent architecture where the master orchestrates the builds, and agents execute build tasks. It's highly customizable with plugins and can integrate with many tools.
-
-Let me know if you need further detail on any of these topics!
