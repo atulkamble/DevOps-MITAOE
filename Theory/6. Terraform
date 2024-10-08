@@ -1,0 +1,83 @@
+### Case Study: Launching Infrastructure for a Web Application Using Terraform
+
+---
+
+#### Contents
+
+1. **Jenkins Overview**
+   - What is Jenkins?
+   - Key Features
+   - Benefits of Using Jenkins in CI/CD
+
+2. **Installation and Basic Configuration**
+   - System Requirements
+   - Step-by-Step Installation Guide
+   - Initial Configuration
+     - Setting up Admin User
+     - Configuring Plugins
+
+3. **Creating and Running Your First Job**
+   - Creating a Freestyle Project
+   - Configuring Source Code Management
+   - Building Steps
+   - Running the Job and Checking Console Output
+
+4. **Adding and Managing Slaves (Agents)**
+   - What are Jenkins Agents?
+   - Setting Up Agents (Linux and Windows)
+   - Configuring Node Properties
+   - Load Balancing and Scaling
+
+5. **Building Triggers**
+   - Overview of Build Triggers
+   - Polling SCM
+   - Webhooks for GitHub/GitLab
+   - Scheduled Builds
+
+6. **Continuous Integration**
+   - Defining Continuous Integration
+   - Best Practices for CI with Jenkins
+   - Integrating Unit Tests
+   - Notifications and Reporting
+
+7. **Using AWS Functionality**
+   - Configuring AWS Credentials
+   - Using AWS Services in Jenkins
+   - Deploying to AWS EC2, S3, and Lambda
+
+---
+
+### Self-Study: Difference Between Terraform and AWS CloudFormation
+
+| Feature                | Terraform                                        | AWS CloudFormation                             |
+|------------------------|--------------------------------------------------|------------------------------------------------|
+| **Provider Agnostic**  | Yes, supports multiple cloud providers           | No, AWS-specific only                          |
+| **Language**           | HashiCorp Configuration Language (HCL)          | JSON/YAML                                      |
+| **State Management**   | Manages state files locally or remotely          | Managed by AWS (no local state files)         |
+| **Change Management**  | Plan step before apply for better visibility     | Changes are applied directly                   |
+| **Modularity**         | Supports modules for reusable components         | Uses nested stacks for modularity              |
+| **Community Support**  | Strong open-source community                     | Primarily AWS support                           |
+| **Resource Graph**     | Builds dependency graphs for efficient updates   | Sequential deployment, less visibility         |
+
+### Further Reading: Using AWS Services Through Terraform
+
+- **Official Terraform AWS Provider Documentation**
+  - Overview of available AWS resources and services.
+  
+- **Creating Infrastructure as Code**
+  - Example Terraform configurations for setting up VPCs, EC2 instances, and RDS databases.
+
+- **Terraform Workflows**
+  - Understanding the Terraform workflow: Write, Plan, Apply, and Destroy.
+
+- **Best Practices**
+  - Modularization of Terraform configurations.
+  - State management strategies.
+
+- **Advanced Topics**
+  - Terraform Cloud and Terraform Enterprise features.
+  - Integrating with CI/CD pipelines (like Jenkins).
+
+### Conclusion
+
+By following the steps outlined above, you'll be well-equipped to launch and manage infrastructure for your web application using Terraform, while leveraging Jenkins for your CI/CD pipeline. Understanding the differences between Terraform and AWS CloudFormation will further enhance your ability to choose the right tools for your specific needs.
